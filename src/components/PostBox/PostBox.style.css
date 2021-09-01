@@ -1,0 +1,52 @@
+.postBox {
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-bottom: 1px solid var(--primary-border);
+}
+
+.postBox > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.postBox__input {
+    display: flex;
+    padding: 20px 0;
+}
+
+.postBox__input > input {
+    flex: 1;
+    margin-left: 20px;
+    font-size: 20px;
+    border: none;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.postBox__input > input:focus {
+    outline: none;
+}
+
+.postBox__imageInput {
+    border: none;
+    padding: 20px;
+}
+
+.postBox .MuiButton-root {
+    width: 80px;
+    /* padding: 10px 0; */
+    border-radius: 10px;
+    font-size: 18px;
+    color: #ffffff;
+    text-transform: inherit;
+    /* margin-top: 10px; */
+    border: 2px solid var(--primary-color);
+    background-color: var(--primary-color);
+    transition: all 250ms ease-in-out;
+    margin-left: auto;
+}
+
+.postBox .MuiButton-root:hover {
+    background-color: inherit;
+}

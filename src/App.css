@@ -1,0 +1,16 @@
+body {
+    color: #ffffff;
+    background-color: #000000;
+    --primary-color: #54b945;
+    --primary-border: rgba(85, 185, 69, 0.3);
+}
+
+.app {
+    /* padding: 0 7%; */
+    display: flex;
+    height: 100vh;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+}

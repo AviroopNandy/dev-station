@@ -10,7 +10,7 @@ const Feed = () => {
 
     useEffect(() => {
         getAllPosts();
-    }, []);
+    }, [getAllPosts]);
 
     return (
         <DevStationConsumer>

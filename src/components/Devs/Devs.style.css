@@ -1,0 +1,136 @@
+.devs {
+    height: calc(100vh - 80px);
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.border {
+    height: 369px;
+    width: 290px;
+    background: transparent;
+    border-radius: 10px;
+    transition: all 250ms;
+    position: relative;
+}
+
+/* .border:hover {
+    border: 1px solid #ffffff;
+} */
+
+.card {
+    height: 379px;
+    width: 300px;
+    background: #808080;
+    border-radius: 10px !important;
+    transition: all 0.8s;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 70px 63px -60px #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.card1 {
+    background: url("../../assets/images/anuvab_dev.jpeg") center center no-repeat;
+    background-size: 300px;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    transition: all 500ms ease-in-out;
+}
+
+.card1:hover {
+    background: url("../../assets/images/anuvab_dev.jpeg") left center no-repeat;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    background-size: 600px;
+}
+
+.card1:hover h2 {
+    opacity: 1;
+}
+
+.card1:hover .fa,
+.card1:hover .far {
+    opacity: 1;
+}
+
+.card2 {
+    background: url("https://i.pinimg.com/736x/8f/a0/51/8fa051251f5ac2d0b756027089fbffde--terry-o-neill-al-pacino.jpg") center center no-repeat;
+    background-size: 300px;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    transition: all 500ms ease-in-out;
+}
+
+.card2:hover {
+    background: url("https://i.pinimg.com/736x/8f/a0/51/8fa051251f5ac2d0b756027089fbffde--terry-o-neill-al-pacino.jpg") left center no-repeat;
+    background-size: 600px;
+}
+
+.card2:hover h2 {
+    opacity: 1;
+}
+
+.card2:hover .fa,
+.card2:hover .far {
+    opacity: 1;
+}
+
+.card3 {
+    background: url("https://i.pinimg.com/736x/8f/a0/51/8fa051251f5ac2d0b756027089fbffde--terry-o-neill-al-pacino.jpg") center center no-repeat;
+    background-size: 300px;
+    transition: all 500ms ease-in-out;
+}
+
+.card3:hover {
+    background: url("https://i.pinimg.com/736x/8f/a0/51/8fa051251f5ac2d0b756027089fbffde--terry-o-neill-al-pacino.jpg") left center no-repeat;
+    background-size: 600px;
+}
+
+.card3:hover h2 {
+    opacity: 1;
+}
+
+.card3:hover .fa,
+.card3:hover .far {
+    opacity: 1;
+}
+
+.border > h2 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #fff;
+    width: auto !important;
+    margin: 20px;
+    opacity: 0;
+    transition: all 500ms;
+}
+
+.border .fa,
+.border .far {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.icons {
+    position: absolute;
+    fill: #fff;
+    color: #fff;
+    height: 130px;
+    top: 226px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    /* backdrop-filter: blur(4px); */
+    color: var(--primary-color);
+}
+
+.icons:hover {
+    color: var(--primary-color);
+}

@@ -6,6 +6,11 @@ body {
 }
 
 .app {
+    margin: 0;
+    padding: 0;
+}
+
+.app__home {
     /* padding: 0 7%; */
     display: flex;
     height: 100vh;

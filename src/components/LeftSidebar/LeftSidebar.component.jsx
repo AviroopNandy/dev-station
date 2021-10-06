@@ -12,7 +12,8 @@ import "./LeftSidebar.style.css";
 const LeftSidebar = () => {
     return (
         <div className="leftSidebar">
-            <TwitterIcon className="leftSidebar__logo" />
+            {/* <TwitterIcon className="leftSidebar__logo" /> */}
+            <h3 className="leftSidebar__logo">DevStation</h3>
             <LeftSidebarOption title="Home" Icon={ HomeIcon } active />
             <LeftSidebarOption title="Explore" Icon={ SearchIcon } />
             <LeftSidebarOption title="Profile" Icon={ PersonIcon } />

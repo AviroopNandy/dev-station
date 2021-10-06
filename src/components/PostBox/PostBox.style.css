@@ -15,16 +15,22 @@
     padding: 20px 0;
 }
 
-.postBox__input > input {
+.postBox__input > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.postBox__input > div > input {
     flex: 1;
     margin-left: 20px;
+    margin-bottom: 10px;
     font-size: 20px;
     border: none;
     background-color: #000000;
     color: #ffffff;
 }
 
-.postBox__input > input:focus {
+.postBox__input > div > input:focus {
     outline: none;
 }
 

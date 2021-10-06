@@ -8,7 +8,7 @@ import sampleImg from "../../assets/images/login_image.jpg";
 
 import "./Post.style.css";
 
-const Post = ({ displayName, username, verified, text, image, avatar}) => {
+const Post = ({ username, body }) => {
     return (
         <div className="post">
             {/* <div className="post__author"> */}
@@ -19,14 +19,15 @@ const Post = ({ displayName, username, verified, text, image, avatar}) => {
                 <div className="post__header">
                     <div className="post__headerText">
                         <h3>
-                            Aviroop Nandy
+                            { username }
                             <span className="post__headerSpecial">
                                 <VerifiedUserIcon className="post__badge" />
                             </span>
                         </h3>
                     </div>
                     <div className="post__headerDescription">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, doloribus.</p>
+                        {/* <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, doloribus.</p> */}
+                        <p>{ body }</p>
                         <p>#lorem #ipsum #dolor #sit #amet #consectetur #adipisicing #elit #Obcaecati</p>
                     </div>
                 </div>

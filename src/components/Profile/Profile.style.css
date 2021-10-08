@@ -1,4 +1,4 @@
-.feed {
+.profile {
     flex: 0.5;
     border-left: 1px solid var(--primary-border);
     border-right: 1px solid var(--primary-border);
@@ -8,19 +8,19 @@
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 
-.feed::-webkit-scrollbar {
+.profile::-webkit-scrollbar {
     display: none;
 
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 
-.feed {
+.profile {
     -ms-overflow-style: none; /* IE and Firefox */
     scrollbar-width: none; /* Firefox */
 }
 
-.feed__header {
+.profile__header {
     position: sticky;
     top: 0;
     z-index: 100;

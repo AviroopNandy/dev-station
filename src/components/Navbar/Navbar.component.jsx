@@ -22,8 +22,8 @@ const Navbar = () => {
                     </NavLink>
                 </div>
                 <div className="navbar__buttons">
-                    <NavLink to="/login" className="navbar__btn login">Login</NavLink>
-                    <NavLink to="/register" className="navbar__btn register">Register</NavLink>
+                    <NavLink to="/login" className="navbar__btn navbar__login">Login</NavLink>
+                    <NavLink to="/register" className="navbar__btn navbar__register">Register</NavLink>
                 </div>
             </nav>
         </div>

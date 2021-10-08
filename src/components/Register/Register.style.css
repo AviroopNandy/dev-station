@@ -1,0 +1,93 @@
+.register {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register > form {
+    display: block;
+    position: relative;
+}
+
+.register > form::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: 1;
+    background-image: linear-gradient(to bottom right, var(--primary-color), #ffffff, var(--primary-color));
+}
+
+.register__form-inner {
+    position: relative;
+    display: block;
+    background-color: #000000;
+    padding: 30px;
+    z-index: 2;
+}
+
+.register__form-inner > h2 {
+    color: var(--primary-color);
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.register__form-group {
+    display: block;
+    width: 360px;
+    margin-bottom: 15px;
+}
+
+.register__form-group > label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+    transition: all 250ms ease-in-out;
+}
+
+.register__form-group:focus-within > label {
+    color: var(--primary-color);
+}
+
+.register__form-group > input {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background: #ffffff;
+    border-radius: 10px;
+    transition: all 250ms ease-in-out;
+}
+
+.register__form-group > input:focus {
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+.register__form-button {
+    display: flex;
+    justify-content: center;
+}
+
+.register__form-button > input {
+    margin-top: 5px;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: var(--primary-color);
+    font-size: 16px;
+    border: 2px solid var(--primary-color);
+    font-weight: 500;
+    transition: all 250ms ease-in-out;
+    cursor: pointer;
+}
+
+.register__form-button > input:hover {
+    background: #000000;
+    color: #ffffff;
+}

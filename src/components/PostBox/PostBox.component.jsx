@@ -8,7 +8,7 @@ import "./PostBox.style.css";
 const PostBox = () => {
     const [body, setBody] = useState("");
     const [tags, setTags] = useState("");
-    const [username, setUsername] = useState("anand");
+    const [username, setUsername] = useState(sessionStorage.getItem("user"));
 
     const submitPost = (e) => {
         e.preventDefault();
@@ -16,23 +16,25 @@ const PostBox = () => {
             username: username,
             body: body
         };
-        axios.post("http://127.0.0.1:8000/post", {
+        console.log(post);
+        const headerConfig = {
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*"
-            },
-            data: JSON.stringify(post)
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Credentials": "true"
+            }
+        };
+        axios.post("http://127.0.0.1:8000/post/", {
+            ...post
+        }, {
+            ...headerConfig
         })
-            .then(res => {
-                console.log(res);
-            })
-            .then(data => {
-                console.log(data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        setUsername("anand");
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        });
         setBody("");
     }
 
@@ -43,7 +45,7 @@ const PostBox = () => {
                     <Avatar src={ avatarImg } alt="" />
                     <div>
                         <input type="text" placeholder="What's new?" value={body} onChange={(e) => setBody(e.target.value)} size="50" />
-                        <input type="text" placeholder="Add tags (space separated, starting with #)" value={tags} onChange={(e) => setTags(e.target.value)} />
+                        {/* <input type="text" placeholder="Add tags (space separated, starting with #)" value={tags} onChange={(e) => setTags(e.target.value)} /> */}
                     </div>
                 </div>
                 {/* <input className="postBox__imageInput" type="text" placeholder="Enter image URL" /> */}

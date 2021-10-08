@@ -61,14 +61,14 @@ nav {
     margin: 0 5px;
 }
 
-.navbar__btn.register {
+.navbar__btn.navbar__register {
     background-color: var(--primary-color);
 }
 
-.navbar__btn.login:hover {
+.navbar__btn.navbar__login:hover {
     background-color: var(--primary-color);
 }
 
-.navbar__btn.register:hover {
+.navbar__btn.navbar__register:hover {
     background-color: #000000;
 }

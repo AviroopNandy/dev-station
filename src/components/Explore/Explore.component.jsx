@@ -1,32 +1,29 @@
 import React, { useContext, useEffect } from "react";
-import PostBox from "../PostBox/PostBox.component";
 import Post from "../Post/Post.component";
 import { DevStationContext, DevStationConsumer } from "../../helpers/Context";
 
-import "./Feed.style.css";
+import "./Explore.style.css";
 
-const Feed = () => {
+const Explore = () => {
     const { getAllPosts } = useContext(DevStationContext);
 
     useEffect(() => {
         getAllPosts();
-    }, [getAllPosts]);
+    }, []);
 
     return (
         <DevStationConsumer>
             { value => {
                 const { allPosts } = value;
-                console.log("All Posts: ", allPosts[0]);
                 return(
-                    <div className="feed">
-                        <div className="feed__header">
-                            <h2>Home</h2>
+                    <div className="explore">
+                        <div className="explore__header">
+                            <h2>Explore</h2>
                         </div>
-                        <PostBox />
-                        { allPosts.length ? (
+                        { allPosts ? (
                             <div>
                                 { allPosts.map((post, id) => (
-                                    <Post username={post.username} body={post.body} key={id} />
+                                    <Post username={post.username} body={post.body} key={id} followUser={true} />
                                 ))}
                             </div>
                         ) : (
@@ -36,7 +33,7 @@ const Feed = () => {
                 )
             }}
         </DevStationConsumer>
-    );
+    )
 }
 
-export default Feed;
+export default Explore;

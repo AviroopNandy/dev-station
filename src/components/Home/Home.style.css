@@ -1,0 +1,30 @@
+.home {
+    flex: 0.5;
+    border-left: 1px solid var(--primary-border);
+    border-right: 1px solid var(--primary-border);
+    /* min-width: fit-content; */
+    overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.home::-webkit-scrollbar {
+    display: none;
+
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+.home {
+    -ms-overflow-style: none; /* IE and Firefox */
+    scrollbar-width: none; /* Firefox */
+}
+
+.home__header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--primary-border);
+    padding: 15px 20px;
+    background-color: #000000;
+}

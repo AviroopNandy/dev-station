@@ -24,7 +24,7 @@ const Explore = () => {
                             <div>
                                 { allPosts.map((post, id) => (
                                     <Post username={post.username} body={post.body} key={id} followUser={true} />
-                                ))}
+                                )) }
                             </div>
                         ) : (
                             null

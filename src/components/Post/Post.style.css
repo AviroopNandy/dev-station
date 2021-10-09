@@ -43,6 +43,15 @@
     color: var(--primary-color);
 }
 
+.post__timeAdded {
+    /* text-align: right;
+    display: flex;
+    justify-content: flex-end; */
+    position: absolute;
+    left: 800px;
+    /* right: 5px; */
+}
+
 .post__headerDescription {
     font-size: 15px;
     margin-bottom: 10px;

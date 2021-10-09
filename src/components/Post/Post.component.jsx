@@ -11,7 +11,7 @@ import axios from "axios";
 
 import "./Post.style.css";
 
-const Post = ({ username, body, deletePost, followUser }) => {
+const Post = ({ username, body, timeAdded, deletePost, followUser }) => {
     const [user, setUser] = useState(sessionStorage.getItem("user"));
 
     const followUserHandler = () => {
@@ -36,6 +36,7 @@ const Post = ({ username, body, deletePost, followUser }) => {
         const returnValue = window.confirm(`Are you sure you want to delete this post? Once deleted, the process cannot be undone. Click "OK" to delete this post`);
         if(returnValue === true) {
             console.log("Post Deleted");
+            // const 
         }
     }
     return (
@@ -52,6 +53,9 @@ const Post = ({ username, body, deletePost, followUser }) => {
                             <span className="post__headerSpecial">
                                 <VerifiedUserIcon className="post__badge" titleAccess="This user is verified" />
                             </span>
+                            <div className="post__timeAdded">
+                                { timeAdded }
+                            </div>
                         </h3>
                     </div>
                     <div className="post__headerDescription">

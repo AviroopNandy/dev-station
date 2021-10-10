@@ -16,7 +16,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get("http://127.0.0.1:8000/post", {
+        axios.get("https://devdevss.herokuapp.com/post", {
             ...headerConfig
         })
         .then(res => {
@@ -35,7 +35,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get(`http://127.0.0.1:8000/post/${user}`, {
+        axios.get(`https://devdevss.herokuapp.com/post/${user}`, {
             ...headerConfig
         })
         .then(res => {
@@ -54,7 +54,7 @@ const DevStationProvider = ({ children }) => {
                 "Content-Type": "Application/json"
             }
         };
-        axios.get(`http://127.0.0.1:8000/user/${user}/feed`, {
+        axios.get(`https://devdevss.herokuapp.com/user/${user}/feed`, {
             ...headerConfig
         })
         .then(res => {

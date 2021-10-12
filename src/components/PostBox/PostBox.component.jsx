@@ -24,7 +24,7 @@ const PostBox = () => {
                 "Access-Control-Allow-Credentials": "true"
             }
         };
-        axios.post("http://127.0.0.1:8000/post/", {
+        axios.post("https://devdevss.herokuapp.com/post/", {
             ...post
         }, {
             ...headerConfig

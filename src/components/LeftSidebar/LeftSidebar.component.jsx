@@ -40,6 +40,7 @@ const LeftSidebar = ({ home, explore, profile }) => {
         e.preventDefault();
         sessionStorage.clear();
         history.push("/");
+        window.location.reload();
     }
     
     return (

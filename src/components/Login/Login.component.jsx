@@ -29,11 +29,12 @@ const Login = () => {
         .then(res => {
             console.log("Logged In");
             sessionStorage.setItem("user", username);
+            history.push("/");
+            window.location.reload();
         })
         .catch(error => {
             alert(error);
         });
-        history.push("/");
     }
     return (
         <div className="login">

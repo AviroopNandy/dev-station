@@ -4,14 +4,46 @@
     padding: 20px 0;
 }
 
-.rightSidebar__profile {
+.rightSidebar__card {
     margin: 0 10px;
-    padding: 10px;
-    height: 55vh;
+    padding: 10px 15px;
+    /* height: 55vh; */
+    height: auto;
     background: rgba( 255, 255, 255, 0.2 );
     /* box-shadow: 0 8px 25px 0 rgba( 85, 185, 69, 0.37 ); */
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
     border: 1px solid rgba( 85, 185, 69, 0.8 );
+}
+
+.rightSidebar__user {
+    margin-bottom: 15px;
+}
+
+.rightSidebar__follow {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.rightSidebar__follow .MuiButton-root {
+    width: 95px;
+    border-radius: 10px;
+    text-transform: inherit;
+    border: 2px solid var(--primary-color);
+    background-color: var(--primary-color);
+    transition: all 250ms ease-in-out;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.rightSidebar .MuiButton-root:hover {
+    background-color: inherit;
+}
+
+.rightSidebar__desc {
+    font-size: 14px;
 }

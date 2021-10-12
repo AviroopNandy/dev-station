@@ -21,7 +21,7 @@ const Post = ({ username, body, timeAdded, deletePost, followUser }) => {
                 "Access-Control-Allow-Credentials": "true"
             }
         };
-        axios.post(`http://127.0.0.1:8000/user/${user}/follow/${username}`, {
+        axios.post(`https://devdevss.herokuapp.com/user/${user}/follow/${username}`, {
             ...headerConfig
         })
         .then(res => {

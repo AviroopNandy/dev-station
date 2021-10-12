@@ -21,7 +21,7 @@ const Login = () => {
                 "Content-Type": "Application/json"
             }
         };
-        axios.post("http://127.0.0.1:8000/user/login", {
+        axios.post("https://devdevss.herokuapp.com/user/login", {
             ...data
         }, {
             ...headerConfig

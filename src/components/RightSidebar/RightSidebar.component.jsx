@@ -13,7 +13,7 @@ const RightSidebar = () => {
                 "Content-Type": "Application/json"
             }
         };
-        axios.get(`http://127.0.0.1:8000/user/${user}`, {
+        axios.get(`https://devdevss.herokuapp.com/user/${user}`, {
             ...headerConfig
         })
         .then(res => {

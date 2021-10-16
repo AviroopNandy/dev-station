@@ -13,23 +13,29 @@ const Profile = () => {
 
     return (
         <DevStationConsumer>
-            { value => {
+            {value => {
                 const { allUserPosts } = value;
                 console.log("All User Posts: ", allUserPosts);
-                return(
+                return (
                     <div className="profile">
                         <div className="profile__header">
                             <h2>Profile</h2>
                         </div>
-                        { allUserPosts ? (
+                        {allUserPosts ? (
                             <div>
-                                { allUserPosts.map((post, id) => (
-                                    <Post username={post.username} body={post.body} key={id} deletePost={true} />
+                                {allUserPosts.map((post, id) => (
+                                    <Post
+                                        username={post.username}
+                                        body={post.body}
+                                        key={id}
+                                        id={post._id}
+                                        deletePost={true}
+                                    />
                                 ))}
                             </div>
                         ) : (
                             null
-                        ) }
+                        )}
                     </div>
                 )
             }}

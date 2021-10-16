@@ -17,8 +17,12 @@
     border: 1px solid rgba( 85, 185, 69, 0.8 );
 }
 
+.rightSidebar__card > h2 {
+    margin-top: 5px;
+}
+
 .rightSidebar__user {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .rightSidebar__follow {
@@ -26,22 +30,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 15px;
     margin-bottom: 5px;
 }
 
-.rightSidebar__follow .MuiButton-root {
-    width: 95px;
-    border-radius: 10px;
-    text-transform: inherit;
-    border: 2px solid var(--primary-color);
-    background-color: var(--primary-color);
-    transition: all 250ms ease-in-out;
-    color: #ffffff;
-    font-size: 18px;
+.rightSidebar__followBtn {
+    cursor: pointer;
+    transition: all 250ms ease-in-out !important;
 }
 
-.rightSidebar .MuiButton-root:hover {
-    background-color: inherit;
+.rightSidebar__followBtn:hover {
+    color: var(--primary-color);
 }
 
 .rightSidebar__desc {

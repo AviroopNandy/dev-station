@@ -8,6 +8,7 @@ import "./PostBox.style.css";
 const PostBox = () => {
     const [body, setBody] = useState("");
     const [tags, setTags] = useState("");
+    const [showTags, setShowTags] = useState(false);
     const [username, setUsername] = useState(sessionStorage.getItem("user"));
 
     const submitPost = (e) => {
@@ -44,8 +45,21 @@ const PostBox = () => {
                 <div className="postBox__input">
                     <Avatar src={ avatarImg } alt="" />
                     <div>
-                        <input type="text" placeholder="What's new?" value={body} onChange={(e) => setBody(e.target.value)} size="50" />
-                        {/* <input type="text" placeholder="Add tags (space separated, starting with #)" value={tags} onChange={(e) => setTags(e.target.value)} /> */}
+                        <input type="text"
+                            placeholder="What's new?"
+                            value={body}
+                            onChange={(e) => setBody(e.target.value)}
+                            size="50"
+                            onClick={() => setShowTags(!showTags)}
+                            // clic
+                        />
+                        { showTags ? (
+                            <input type="text"
+                                placeholder="Add tags (space separated, starting with #)"
+                                value={tags}
+                                onChange={(e) => setTags(e.target.value)}
+                            />
+                        ) : (null) }
                     </div>
                 </div>
                 {/* <input className="postBox__imageInput" type="text" placeholder="Enter image URL" /> */}

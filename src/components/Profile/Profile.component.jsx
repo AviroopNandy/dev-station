@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Post from "../Post/Post.component";
 import { DevStationContext, DevStationConsumer } from "../../helpers/Context";
 
 import "./Profile.style.css";
 
 const Profile = () => {
+    const [user, setUser] = useState(sessionStorage.getItem("user"));
     const { getAllUserPosts } = useContext(DevStationContext);
 
     useEffect(() => {
@@ -20,6 +21,11 @@ const Profile = () => {
                     <div className="profile">
                         <div className="profile__header">
                             <h2>Profile</h2>
+                            { user ? (
+                                <h3>@{user}</h3>
+                            ) : (
+                                null
+                            ) }
                         </div>
                         { allUserPosts ? (
                             <div>

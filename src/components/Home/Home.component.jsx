@@ -33,7 +33,7 @@ const Home = () => {
                     { userFeed ? (
                         <div>
                             { userFeed.map((post, id) => (
-                                <Post username={post.username} body={post.body} key={id} />
+                                <Post username={post.username} body={post.body} id={post._id} key={id} />
                             ))}
                         </div>
                     ) : (

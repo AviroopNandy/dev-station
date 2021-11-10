@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Post from "../Post/Post.component";
 import { DevStationContext, DevStationConsumer } from "../../helpers/Context";
+import { CircularProgress } from "@material-ui/core";
 
 import "./Explore.style.css";
 
@@ -33,7 +34,9 @@ const Explore = () => {
                                 )) }
                             </div>
                         ) : (
-                            null
+                            <div className="loading">
+                                <CircularProgress className="loader" />
+                            </div>
                         ) }
                     </div>
                 )

@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import Post from "../Post/Post.component";
+import About from "./About/About.component";
 import { DevStationContext, DevStationConsumer } from "../../helpers/Context";
+import { CircularProgress } from "@material-ui/core";
 
 import "./Profile.style.css";
 
@@ -27,6 +29,7 @@ const Profile = () => {
                                 null
                             ) }
                         </div>
+                        <About />
                         {allUserPosts ? (
                             <div>
                                 {allUserPosts.map((post, id) => (
@@ -40,7 +43,9 @@ const Profile = () => {
                                 ))}
                             </div>
                         ) : (
-                            null
+                            <div className="loading">
+                                <CircularProgress className="loader" />
+                            </div>
                         )}
                     </div>
                 )

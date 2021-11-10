@@ -51,7 +51,6 @@ const PostBox = () => {
                             onChange={(e) => setBody(e.target.value)}
                             size="50"
                             onClick={() => setShowTags(!showTags)}
-                            // clic
                         />
                         { showTags ? (
                             <input type="text"

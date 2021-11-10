@@ -15,9 +15,10 @@ import "./App.css";
 
 function App() {
     const [user, setUser] = useState(sessionStorage.getItem("user"));
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     useEffect(() => {
+        sessionStorage.setItem("user", "test1");
         if(user) {
             setIsLoggedIn(true);
         }

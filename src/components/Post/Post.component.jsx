@@ -14,7 +14,6 @@ import "./Post.style.css";
 
 const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
     const [user, setUser] = useState(sessionStorage.getItem("user"));
-    const [token, setToken] = useState(sessionStorage.getItem("user"))
 
 
     const followUserHandler = () => {
@@ -28,15 +27,14 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
             ...headerConfig
         })
         .then(res => {
-            alert("User followed successfully!")
+            alert("User followed successfully!");
         })
         .catch(error => {
             alert(error);
         });
     }
 
-    const deletePostHandler = async () => {
-
+    const deletePostHandler = () => {
         const returnValue = window.confirm(`Are you sure you want to delete this post? Once deleted, the process cannot be undone. Click "OK" to delete this post`);
         if(returnValue === true) {
             const headerConfig = {
@@ -45,18 +43,16 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
                     "Access-Control-Allow-Credentials": "true"
                 }
             };
-    
-            await axios.delete(`https://devdevss.herokuapp.com/post/${id}`, {
+            axios.delete(`https://devdevss.herokuapp.com/post/${id}`, {
                 ...headerConfig
             })
-            console.log("Post Deleted!");
-            alert("Post Deleted!");
-            // const 
-            setToken(undefined)
-               }
+            .then(res => {
+                alert("Post Deleted!");
+                window.location.reload();
+            })
+        }
     }
-    if (!token) 
-        return <Redirect to="/"/>
+    
     return (
         <div className="post">
             {/* <div className="post__author"> */}

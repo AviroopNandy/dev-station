@@ -31,10 +31,10 @@ const PostBox = () => {
             ...headerConfig
         })
         .then(res => {
-            console.log(res);
+            alert("Post created successfully!");
         })
         .catch(err => {
-            console.log(err);
+            alert(err);
         });
         setBody("");
     }

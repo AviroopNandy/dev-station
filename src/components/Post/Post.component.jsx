@@ -6,15 +6,61 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import ChatBubbleIcon from "@material-ui/icons/ChatBubbleOutlineOutlined";
 import DeleteIcon from "@material-ui/icons/Delete";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import RemoveIcon from "@material-ui/icons/Remove";
 import avatarImg from "../../assets/images/avatar.png";
 import sampleImg from "../../assets/images/login_image.jpg";
 import axios from "axios";
 
 import "./Post.style.css";
 
-const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
+const Post = ({ id, username, body, timeAdded, deletePost, followUser, likesCount }) => {
     const [user, setUser] = useState(sessionStorage.getItem("user"));
+    const [likes, setLikes] = useState(likesCount);
+    const [comments, setComments] = useState([]);
+    const [tags, setTags] = useState([]);
 
+    useEffect(() => {
+        const headerConfig = {
+            headers: {
+                "Content-Type": "Application/json",
+            }
+        };
+        axios.get(`https://devdevss.herokuapp.com/post/${id}`, {
+            ...headerConfig
+        })
+        .then(res => {
+            console.log(res.data.tags);
+            //     setTags([...tags, ...res.data.tags])
+            // console.log(tags);
+        })
+    }, []);
+
+    const likePostHandler = () => {
+        console.log(id);
+        const headerConfig = {
+            headers: {
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Credentials": "true"
+            }
+        };
+        axios.post(`https://devdevss.herokuapp.com/post/${id}/like`, {
+            ...headerConfig
+        })
+        .then(res => {
+            console.log("Likes: ", res.data.likes);
+            setLikes(res.data.likes);
+        })
+    }
+
+    const commentPostHandler = () => {
+        const headerConfig = {
+            headers: {
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Credentials": "true",
+            }
+        }
+        // axios.get()
+    }
 
     const followUserHandler = () => {
         const headerConfig = {
@@ -34,6 +80,24 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
         });
     }
 
+    const unfollowUserHandler = () => {
+        const headerConfig = {
+            headers: {
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Credentials": "true"
+            }
+        };
+        axios.post(`https://devdevss.herokuapp.com/user/${user}/unfollow/${username}`, {
+            ...headerConfig
+        })
+        .then(res => {
+            alert("User unfollowed successfully!");
+        })
+        .catch(error => {
+            alert(error);
+        })
+    }
+
     const deletePostHandler = () => {
         const returnValue = window.confirm(`Are you sure you want to delete this post? Once deleted, the process cannot be undone. Click "OK" to delete this post`);
         if(returnValue === true) {
@@ -49,6 +113,9 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
             .then(res => {
                 alert("Post Deleted!");
                 window.location.reload();
+            })
+            .catch(error => {
+                alert(error);
             })
         }
     }
@@ -74,16 +141,19 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
                     </div>
                     <div className="post__headerDescription">
                         <p>{ body }</p>
+                        { tags.map((tag, id) => (
+                            <p key={id}>{tag}</p>
+                        ))}
                         {/* <p>#lorem #ipsum #dolor #sit #amet #consectetur #adipisicing #elit #Obcaecati</p> */}
                     </div>
                 </div>
                 {/* <img src={ sampleImg } alt="" /> */}
                 <div className="post__footer">
                     <div className="like">
-                        <FavoriteBorderIcon fontSize="small" className="post__footerOption" titleAccess="Like Post" /><span>5</span>
+                        <FavoriteBorderIcon fontSize="small" className="post__footerOption" titleAccess="Like Post" onClick={() => likePostHandler()} /><span>{likes}</span>
                     </div>
                     <div className="comment">
-                        <ChatBubbleIcon fontSize="small" className="post__footerOption" titleAccess="Add Comment" /><span>8</span>
+                        <ChatBubbleIcon fontSize="small" className="post__footerOption" titleAccess="Add Comment" onClick={() => commentPostHandler()} /><span></span>
                     </div>
                     { followUser ? (
                         user === username ? (

@@ -24,12 +24,12 @@ const PostBox = () => {
         // for (var tag in tags.split(" ")) {
         //     console.log(tags[tag]);
         // }
-        setTagsArr(tags.split(" "));
+        // setTagsArr(tags.split(" "));
         // console.log("Tags: ", tags);
         const post = {
             username: username,
             body: body,
-            tags: tagsArr
+            tags: tags.split(" ")
         };
         // console.log(post);
         const headerConfig = {
@@ -46,6 +46,7 @@ const PostBox = () => {
         })
         .then(res => {
             alert("Post created successfully!");
+            console.log(post);
         })
         .catch(err => {
             alert(err);

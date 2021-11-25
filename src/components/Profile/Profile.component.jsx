@@ -31,7 +31,8 @@ const Profile = () => {
                             ) }
                         </div>
                         <About />
-                        {allUserPosts ? (
+                        { allUserPosts ? (
+                            // {allUserPosts.length > 0 ? (
                             <div>
                                 {allUserPosts.map((post, id) => (
                                     <Post
@@ -47,9 +48,10 @@ const Profile = () => {
                             </div>
                         ) : (
                             <div className="loading">
-                                <CircularProgress className="loader" />
+                                {/* <CircularProgress className="loader" /> */}
+                                <h4>Your posts will show here. Create your first post from the home page</h4>
                             </div>
-                        )}
+                        ) }
                     </div>
                 )
             }}

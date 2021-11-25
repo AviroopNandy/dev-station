@@ -60,7 +60,8 @@ const DevStationProvider = ({ children }) => {
     const getUserFeed = () => {
         const headerConfig = {
             headers: {
-                "Content-Type": "Application/json"
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Origin": "*"
             }
         };
         axios.get(`https://devdevss.herokuapp.com/user/${user}/feed`, {

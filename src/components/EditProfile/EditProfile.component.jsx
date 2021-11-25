@@ -59,10 +59,11 @@ const EditProfile = () => {
         }
         const headerConfig = {
             headers: {
-                "Content-Type": "Application/json"
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Origin": "*",
             }
         };
-        axios.delete(`https://devdevss.herokuapp.com/user/update/${userId}`, {
+        axios.put(`https://devdevss.herokuapp.com/user/update/${userId}`, {
             ...body
         }, {
             ...headerConfig
@@ -70,6 +71,7 @@ const EditProfile = () => {
         .then(res => {
             alert("User updated successfully!");
             sessionStorage.setItem("user", userDetails.username);
+            window.location.reload();
         })
         .catch(error => {
             alert(error);
@@ -126,6 +128,14 @@ const EditProfile = () => {
                             size="30"
                         />
                     </div>
+                    {/* <div className="edit__inputBox">
+                        <input type="text"
+                            // placeholder="Write your comment here..."
+                            value={userDetails.password}
+                            onChange={(e) => setUserDetails({...userDetails, password: e.target.value})}
+                            size="30"
+                        />
+                    </div> */}
                     <div className="edit__inputBox">
                         <input type="text"
                             // placeholder="Write your comment here..."

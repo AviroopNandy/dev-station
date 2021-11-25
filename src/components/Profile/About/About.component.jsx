@@ -1,16 +1,18 @@
 import React, { useEffect, useState, useContext } from "react";
 import avatarImg from "../../../assets/images/avatar.png";
-import { Avatar, Button } from "@material-ui/core";
+import { Avatar, Button, Modal } from "@material-ui/core";
 import { DevStationContext, DevStationConsumer } from "../../../helpers/Context";
+import EditProfile from "../../EditProfile/EditProfile.component";
 
 import "./About.style.css";
 
 const About = () => {
-    const [username, setUsername] = useState(sessionStorage.getItem("user"));
+    const [user, setUser] = useState(sessionStorage.getItem("user"));
+    const [showEdit, setShowEdit] = useState(false);
     const { getUserAbout } = useContext(DevStationContext);
 
     useEffect(() => {
-        getUserAbout(username);
+        getUserAbout(user);
     }, []);
     return (
         <DevStationConsumer>
@@ -25,10 +27,20 @@ const About = () => {
                             <div className="about__details">
                                 <div className="about__info">
                                     <span className="about__name">{ userAbout.firstName } { userAbout.lastName }</span><br />
-                                    <span className="about__username">@{username}</span>
+                                    <span className="about__username">@{user}</span>
                                 </div>
                                 <div className="about__edit">
-                                    <Button variant="contained">Edit Profile</Button>
+                                    <Button variant="contained" onClick={() => setShowEdit(!showEdit)}>Edit Profile</Button>
+                                    { showEdit ? (
+                                        <Modal
+                                        open={showEdit}
+                                        onClose={() => setShowEdit(false)}
+                                        >
+                                            <EditProfile />
+                                        </Modal>
+                                    ) : (
+                                        null
+                                    )}
                                 </div>
                             </div>
                         </div>

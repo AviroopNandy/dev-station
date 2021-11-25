@@ -36,6 +36,7 @@ const Explore = () => {
                                         key={id}
                                         id={post._id}
                                         likesCount={post.likes}
+                                        allTags={post.tags}
                                         followUser={true}
                                     />
                                 )) }

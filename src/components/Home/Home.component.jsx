@@ -11,6 +11,7 @@ const Home = () => {
     const { getUserFeed } = useContext(DevStationContext);
 
     useEffect(() => {
+        setUser(sessionStorage.getItem("user"));
         getUserFeed();
     }, []);
 
@@ -34,7 +35,13 @@ const Home = () => {
                         userFeed.length > 0 ? (
                             <div>
                                 { userFeed.map((post, id) => (
-                                    <Post username={post.username} body={post.body} id={post._id} key={id} />
+                                    <Post
+                                        username={post.username}
+                                        body={post.body}
+                                        id={post._id}
+                                        likesCount={post.likes}
+                                        key={id}
+                                    />
                                 ))}
                             </div>
                         ) : (

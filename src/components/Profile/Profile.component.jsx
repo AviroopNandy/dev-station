@@ -11,6 +11,7 @@ const Profile = () => {
     const { getAllUserPosts } = useContext(DevStationContext);
 
     useEffect(() => {
+        setUser(sessionStorage.getItem("user"));
         getAllUserPosts();
     }, []);
 
@@ -38,6 +39,8 @@ const Profile = () => {
                                         body={post.body}
                                         key={id}
                                         id={post._id}
+                                        likesCount={post.likes}
+                                        allTags={post.tags}
                                         deletePost={true}
                                     />
                                 ))}

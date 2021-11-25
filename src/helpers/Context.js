@@ -15,16 +15,7 @@ const DevStationProvider = ({ children }) => {
         followers: 0,
         following: 0
     });
-    const [top3Users, setTop3Users] = useState([
-        {
-            firstName: "",
-            lastName: "",
-            username: "",
-            posts: 0,
-            followers: 0,
-            following: 0
-        }
-    ])
+    const [top3Users, setTop3Users] = useState([{}]);
 
     const getAllPosts = () => {
         const headerConfig = {
@@ -107,31 +98,32 @@ const DevStationProvider = ({ children }) => {
     }
 
     const getTop3Users = () => {
+        setTop3Users([]);
         const headerConfig = {
             headers: {
                 "Content-Type": "Application/json",
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get("https://devdevss.herokuapp.com/user/users/top3", {
+        axios.get("http://localhost:8000/user/users/top3", {
             ...headerConfig
         })
-        .then(async res => {
-            for(var i = 0; i < 3; i++) {
-                await setTop3Users({
-                    ...top3Users,
-                    firstName: res.data[i].first_name,
-                    lastName: res.data[i].last_name,
-                    username: res.data[i].username,
-                    posts: res.data[i].posts_id.length,
-                    followers: res.data[i].followers_count,
-                    following: res.data[i].following_count
-                });
+        .then(res => {
+            // res.data.forEach(user => {
+            //     console.log(user);
+            //     setTop3Handler(user);
+            //     // setTop3Users(top3Users => [...top3Users, user]);
+            // });
+            console.log(top3Users);
+            for(let i = 0; i < 3; i++) {
+                setTop3Users(top3Users => [...top3Users, res.data[i]]);
             }
         })
-        // console.log("Hello123");
-        console.log("Top 3 Users: ", top3Users);
     }
+
+    // const setTop3Handler = (user) => {
+    //     setTop3Users(top3Users => [...top3Users, user]);
+    // }
 
     return(
         <DevStationContext.Provider

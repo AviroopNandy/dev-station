@@ -5,6 +5,7 @@ const DevStationContext = React.createContext();
 
 const DevStationProvider = ({ children }) => {
     const [user, setUser] = useState(sessionStorage.getItem("user"));
+    const [userId, setUserId] = useState(sessionStorage.getItem("userId"));
     const [allPosts, setAllPosts] = useState(null);
     const [allUserPosts, setAllUserPosts] = useState(null);
     const [userFeed, setUserFeed] = useState(null);
@@ -16,6 +17,13 @@ const DevStationProvider = ({ children }) => {
         following: 0
     });
     const [top3Users, setTop3Users] = useState([{}]);
+    // const [allRequests, setAllRequests] = useState([{
+    //     body: "",
+    //     type: "",
+    //     accepted: false
+    // }]);
+
+    const [allRequests, setAllRequests] = useState([]);
 
     const getAllPosts = () => {
         const headerConfig = {
@@ -37,6 +45,8 @@ const DevStationProvider = ({ children }) => {
     }
 
     const getAllUserPosts = () => {
+        setUser(sessionStorage.getItem("user"));
+        console.log("Logged In User: ", user);
         const headerConfig = {
             headers: {
                 "Content-Type": "Application/json",
@@ -58,6 +68,7 @@ const DevStationProvider = ({ children }) => {
     }
 
     const getUserFeed = () => {
+        setUser(sessionStorage.getItem("user"));
         const headerConfig = {
             headers: {
                 "Content-Type": "Application/json",
@@ -110,11 +121,6 @@ const DevStationProvider = ({ children }) => {
             ...headerConfig
         })
         .then(res => {
-            // res.data.forEach(user => {
-            //     console.log(user);
-            //     setTop3Handler(user);
-            //     // setTop3Users(top3Users => [...top3Users, user]);
-            // });
             console.log(top3Users);
             for(let i = 0; i < 3; i++) {
                 setTop3Users(top3Users => [...top3Users, res.data[i]]);
@@ -122,9 +128,31 @@ const DevStationProvider = ({ children }) => {
         })
     }
 
-    // const setTop3Handler = (user) => {
-    //     setTop3Users(top3Users => [...top3Users, user]);
-    // }
+    const getAllRequests = () => {
+        setAllRequests([]);
+        const headerConfig = {
+            heaeders: {
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        };
+        axios.get(`http://localhost:8000/request/created/${userId}`, {
+            ...headerConfig
+        })
+        .then(res => {
+            if(res.status === 200) {
+                res.data.forEach(request => {
+                    setAllRequests(allRequests => [...allRequests, {
+                        id: request._id,
+                        body: request.body,
+                        type: request.type,
+                        accepted: request.accepted
+                    }]);
+                });
+            }
+            console.log(allRequests.length);
+        })
+    }
 
     return(
         <DevStationContext.Provider
@@ -133,11 +161,13 @@ const DevStationProvider = ({ children }) => {
                 allUserPosts,
                 userFeed,
                 userAbout,
+                allRequests,
                 getAllPosts: getAllPosts,
                 getAllUserPosts: getAllUserPosts,
                 getUserFeed: getUserFeed,
                 getUserAbout: getUserAbout,
-                getTop3Users: getTop3Users
+                getTop3Users: getTop3Users,
+                getAllRequests: getAllRequests
             }}
         >
             { children }

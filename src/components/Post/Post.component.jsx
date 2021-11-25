@@ -70,7 +70,7 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser, likesCoun
         const headerConfig = {
             headers: {
                 "Content-Type": "Application/json",
-                "Access-Control-Allow-Credentials": "true"
+                "Access-Control-Allow-Origin": "*"
             }
         };
         axios.post(`https://devdevss.herokuapp.com/user/${user}/follow/${username}`, {

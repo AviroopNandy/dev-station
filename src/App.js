@@ -10,6 +10,7 @@ import LeftSidebar from "./components/LeftSidebar/LeftSidebar.component";
 import Home from "./components/Home/Home.component";
 import Explore from "./components/Explore/Explore.component";
 import Profile from "./components/Profile/Profile.component";
+import Requests from "./components/Requests/Requests.component";
 import RightSidebar from "./components/RightSidebar/RightSidebar.component";
 
 import "./App.css";
@@ -44,22 +45,29 @@ function App() {
                         <>
                             <Route exact path="/">
                                 <div className="app__home">
-                                    <LeftSidebar home={true} explore={false} profile={false} />
+                                    <LeftSidebar home={true} explore={false} profile={false} requests={false} />
                                     <Home />
                                     <RightSidebar />
                                 </div>
                             </Route>
                             <Route path="/explore">
                                 <div className="app__home">
-                                    <LeftSidebar home={false} explore={true} profile={false} />
+                                    <LeftSidebar home={false} explore={true} profile={false} requests={false} />
                                     <Explore />
                                     <RightSidebar />
                                 </div>
                             </Route>
                             <Route path="/profile">
                                 <div className="app__home">
-                                    <LeftSidebar home={false} explore={false} profile={true} />
+                                    <LeftSidebar home={false} explore={false} profile={true} requests={false} />
                                     <Profile />
+                                    <RightSidebar />
+                                </div>
+                            </Route>
+                            <Route path="/requests">
+                                <div className="app__home">
+                                    <LeftSidebar home={false} explore={false} profile={false} requests={true} />
+                                    <Requests />
                                     <RightSidebar />
                                 </div>
                             </Route>

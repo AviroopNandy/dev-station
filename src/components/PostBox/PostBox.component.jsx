@@ -8,16 +8,30 @@ import "./PostBox.style.css";
 const PostBox = () => {
     const [body, setBody] = useState("");
     const [tags, setTags] = useState("");
+    const [tagsArr, setTagsArr] = useState([]);
     const [showTags, setShowTags] = useState(false);
     const [username, setUsername] = useState(sessionStorage.getItem("user"));
 
+    const extractTags = async (e) => {
+        e.preventDefault();
+        // console.log(tags);
+        await tags.split(" ");
+        console.log(typeof tags);
+    }
+
     const submitPost = (e) => {
         e.preventDefault();
+        // for (var tag in tags.split(" ")) {
+        //     console.log(tags[tag]);
+        // }
+        // setTagsArr(tags.split(" "));
+        // console.log("Tags: ", tags);
         const post = {
             username: username,
-            body: body
+            body: body,
+            tags: tags.split(" ")
         };
-        console.log(post);
+        // console.log(post);
         const headerConfig = {
             headers: {
                 "Content-Type": "application/json",
@@ -31,12 +45,16 @@ const PostBox = () => {
             ...headerConfig
         })
         .then(res => {
-            console.log(res);
+            alert("Post created successfully!");
+            console.log(post);
         })
         .catch(err => {
-            console.log(err);
+            alert(err);
+            console.log(tags);
+            console.log(post);
         });
         setBody("");
+        setTags("");
     }
 
     return (

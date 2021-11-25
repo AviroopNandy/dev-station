@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import axios from "axios";
 import Navbar from "./components/Navbar/Navbar.component";
 import Landing from "./components/Landing/Landing.component";
 import Login from "./components/Login/Login.component";
@@ -15,12 +16,23 @@ import "./App.css";
 
 function App() {
     const [user, setUser] = useState(sessionStorage.getItem("user"));
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        sessionStorage.setItem("user", "test1");
+        // sessionStorage.setItem("user", "john123");
         if(user) {
             setIsLoggedIn(true);
+            const headerConfig = {
+                headers: {
+                    "Content-Type": "Application/json",
+                }
+            };
+            axios.get(`https://devdevss.herokuapp.com/user/${user}/details`, {
+                ...headerConfig
+            })
+            .then(res => {
+                sessionStorage.setItem("userId", res.data._id);
+            })
         }
     }, []);
 
@@ -63,10 +75,10 @@ function App() {
                             <Route path="/register">
                                 <Register />
                             </Route>
-                            <Route path="/devs">
+                            {/* <Route path="/devs">
                                 <Navbar />
                                 <Devs />
-                            </Route>
+                            </Route> */}
                         </>
                     ) }
                 </Switch>

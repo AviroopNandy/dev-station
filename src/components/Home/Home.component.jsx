@@ -11,6 +11,7 @@ const Home = () => {
     const { getUserFeed } = useContext(DevStationContext);
 
     useEffect(() => {
+        setUser(sessionStorage.getItem("user"));
         getUserFeed();
     }, []);
 
@@ -31,14 +32,28 @@ const Home = () => {
                     </div>
                     <PostBox />
                     { userFeed ? (
-                        <div>
-                            { userFeed.map((post, id) => (
-                                <Post username={post.username} body={post.body} id={post._id} key={id} />
-                            ))}
-                        </div>
+                        userFeed.length > 0 ? (
+                            <div>
+                                { userFeed.map((post, id) => (
+                                    <Post
+                                        username={post.username}
+                                        body={post.body}
+                                        id={post._id}
+                                        likesCount={post.likes}
+                                        key={id}
+                                    />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="loading">
+                                <h3>Follow someone to see their posts on your feed</h3>
+                                {/* <CircularProgress className="loader" /> */}
+                            </div>
+                        )
                     ) : (
                         <div className="loading">
                             <CircularProgress className="loader" />
+                            {/* <h3>Follow someone to see their posts on your feed</h3> */}
                         </div>
                     ) }
                 </div>

@@ -1,0 +1,60 @@
+.comment__display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  background: whitesmoke;
+  border-radius: 5px;
+  color: #000000;
+  box-shadow: 24px;
+  padding: 15px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.comment__view {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.comment__view > p {
+  padding: 5px 0;
+}
+
+.loading > h4 {
+  margin-bottom: 20px;
+}
+
+.comment__input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment__input > input {
+  /* flex: 1; */
+  width: 85%;
+  font-size: 16px;
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  color: #000000;
+}
+
+.comment__input > input:focus {
+  outline: none;
+}
+
+.comment__input .MuiButton-root {
+  border-radius: 10px;
+  border: 2px solid var(--primary-color);
+  background-color: var(--primary-color);
+  color: #ffffff !important;
+  transition: all 250ms ease-in-out;
+}
+
+.comment__input .MuiButton-root:hover {
+  background: inherit;
+  color: #000000 !important;
+}

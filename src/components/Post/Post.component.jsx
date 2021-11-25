@@ -1,20 +1,70 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Avatar } from "@material-ui/core";
+import { Avatar, Modal } from "@material-ui/core";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import ChatBubbleIcon from "@material-ui/icons/ChatBubbleOutlineOutlined";
 import DeleteIcon from "@material-ui/icons/Delete";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import RemoveIcon from "@material-ui/icons/Remove";
 import avatarImg from "../../assets/images/avatar.png";
 import sampleImg from "../../assets/images/login_image.jpg";
+import Comment from "../Comment/Comment.component";
 import axios from "axios";
 
 import "./Post.style.css";
 
-const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
+const Post = ({ id, username, body, timeAdded, deletePost, followUser, likesCount, allTags }) => {
     const [user, setUser] = useState(sessionStorage.getItem("user"));
+    const [likes, setLikes] = useState(likesCount);
+    const [comments, setComments] = useState([]);
+    const [showComments, setShowComments] = useState(false);
+    const [tags, setTags] = useState([]);
 
+    useEffect(() => {
+        const headerConfig = {
+            headers: {
+                "Content-Type": "Application/json",
+            }
+        };
+        // console.log(id);
+        axios.get(`https://devdevss.herokuapp.com/post/${id}`, {
+            ...headerConfig
+        })
+        .then(async res => {
+            setTags(res.data.tags);
+            await setComments(res.data.comments);
+            // console.log(comments);
+        })
+    }, []);
+
+    const likePostHandler = () => {
+        console.log(id);
+        const headerConfig = {
+            headers: {
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Credentials": "true"
+            }
+        };
+        axios.post(`https://devdevss.herokuapp.com/post/${id}/like`, {
+            ...headerConfig
+        })
+        .then(res => {
+            // console.log("Likes: ", res.data.likes);
+            setLikes(res.data.likes);
+            // window.location.reload();
+        })
+    }
+
+    const commentPostHandler = () => {
+        const headerConfig = {
+            headers: {
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Credentials": "true",
+            }
+        }
+        // axios.get()
+    }
 
     const followUserHandler = () => {
         const headerConfig = {
@@ -34,6 +84,24 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
         });
     }
 
+    const unfollowUserHandler = () => {
+        const headerConfig = {
+            headers: {
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Credentials": "true"
+            }
+        };
+        axios.post(`https://devdevss.herokuapp.com/user/${user}/unfollow/${username}`, {
+            ...headerConfig
+        })
+        .then(res => {
+            alert("User unfollowed successfully!");
+        })
+        .catch(error => {
+            alert(error);
+        })
+    }
+
     const deletePostHandler = () => {
         const returnValue = window.confirm(`Are you sure you want to delete this post? Once deleted, the process cannot be undone. Click "OK" to delete this post`);
         if(returnValue === true) {
@@ -49,6 +117,9 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
             .then(res => {
                 alert("Post Deleted!");
                 window.location.reload();
+            })
+            .catch(error => {
+                alert(error);
             })
         }
     }
@@ -67,24 +138,40 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
                             <span className="post__headerSpecial">
                                 <VerifiedUserIcon className="post__badge" titleAccess="This user is verified" />
                             </span>
-                            <div className="post__timeAdded">
+                            {/* <div className="post__timeAdded">
                                 { timeAdded }
-                            </div>
+                            </div> */}
                         </h3>
                     </div>
                     <div className="post__headerDescription">
                         <p>{ body }</p>
+                        <div className="post__tags">
+                            { tags?.map((tag, id) => (
+                                    <p key={id}>{tag}</p>
+                            ))}
+                        </div>
                         {/* <p>#lorem #ipsum #dolor #sit #amet #consectetur #adipisicing #elit #Obcaecati</p> */}
                     </div>
                 </div>
                 {/* <img src={ sampleImg } alt="" /> */}
                 <div className="post__footer">
                     <div className="like">
-                        <FavoriteBorderIcon fontSize="small" className="post__footerOption" titleAccess="Like Post" /><span>5</span>
+                        <FavoriteBorderIcon fontSize="small" className="post__footerOption" titleAccess="Like Post" onClick={() => likePostHandler()} /><span>{likes}</span>
                     </div>
                     <div className="comment">
-                        <ChatBubbleIcon fontSize="small" className="post__footerOption" titleAccess="Add Comment" /><span>8</span>
+                        <ChatBubbleIcon fontSize="small" className="post__footerOption" titleAccess="Add Comment" onClick={() => setShowComments(!showComments)} /><span>{comments.length}</span>
+                        <Modal
+                            open={showComments}
+                            onClose={() => setShowComments(false)}
+                        >
+                            <Comment id={id}/>
+                        </Modal>
                     </div>
+                    {/* { showComments ? (
+                        <h3>Comments here!</h3>
+                    ) : (
+                        null
+                    ) } */}
                     { followUser ? (
                         user === username ? (
                             null

@@ -30,7 +30,15 @@ const Explore = () => {
                         { allPosts ? (
                             <div>
                                 { allPosts.map((post, id) => (
-                                    <Post username={post.username} body={post.body} key={id} followUser={true} />
+                                    <Post
+                                        username={post.username}
+                                        body={post.body}
+                                        key={id}
+                                        id={post._id}
+                                        likesCount={post.likes}
+                                        allTags={post.tags}
+                                        followUser={true}
+                                    />
                                 )) }
                             </div>
                         ) : (

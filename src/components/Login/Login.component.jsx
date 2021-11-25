@@ -16,6 +16,7 @@ const Login = () => {
             username: username,
             password: password
         };
+        console.log("Data: ", data);
         const headerConfig = {
             headers: {
                 "Content-Type": "Application/json"
@@ -27,6 +28,7 @@ const Login = () => {
             ...headerConfig
         })
         .then(res => {
+            // console.log(res.access_token);
             console.log("Logged In");
             sessionStorage.setItem("user", username);
             history.push("/");

@@ -54,11 +54,6 @@ const LeftSidebar = ({ home, explore, profile, requests }) => {
         history.push("/requests");
     }
 
-    const createRequest = (e) => {
-        e.preventDefault();
-
-    }
-
     const logoutUser = (e) => {
         e.preventDefault();
         const headerConfig = {
@@ -67,7 +62,7 @@ const LeftSidebar = ({ home, explore, profile, requests }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.post(`http://devdevss.herokuapp.com/user/logout?username=${user}`, {
+        axios.post(`https://devdevss.herokuapp.com/user/logout?username=${user}`, {
             ...headerConfig
         })
         .then(res => {

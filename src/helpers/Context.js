@@ -12,6 +12,7 @@ const DevStationProvider = ({ children }) => {
     const [userAbout, setUserAbout] = useState({
         firstName: "",
         lastName: "",
+        role: "",
         posts: 0,
         followers: 0,
         following: 0
@@ -102,6 +103,7 @@ const DevStationProvider = ({ children }) => {
             await setUserAbout({
                 firstName: res.data.first_name,
                 lastName: res.data.last_name,
+                role: res.data.role,
                 posts: res.data.posts_id.length,
                 followers: res.data.followers_count,
                 following: res.data.following_count

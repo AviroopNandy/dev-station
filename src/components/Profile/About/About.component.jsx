@@ -57,6 +57,10 @@ const About = () => {
                                 <span className="about__stat">Following</span><br />
                                 <span className="about__statCount">{ userAbout.following }</span>
                             </div>
+                            <div className="about__role">
+                                <span className="about__stat">Role</span><br />
+                                <span className="about__statCount">{ userAbout.role }</span>
+                            </div>
                         </div>
                     </div>
                 )

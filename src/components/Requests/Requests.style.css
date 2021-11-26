@@ -32,15 +32,38 @@
   background-color: #000000;
 }
 
-/* .requests__show {
+.requests__col-rev {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-} */
+  flex-direction: column-reverse;
+}
 
 .requests__show {
   /* margin-bottom: 10px; */
   padding: 10px;
   border-bottom: 1px solid var(--primary-border);
+}
+
+.requests__none {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--primary-border);
+}
+
+.requests__btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.requests__btn .MuiButton-root {
+  width: 150px;
+  border-radius: 10px;
+  color: #ffffff;
+  transition: all 250ms ease-in-out;
+  border: 2px solid var(--primary-color);
+  background-color: var(--primary-color);
+}
+
+.requests__btn .MuiButton-root:hover {
+  background-color: inherit;
+  /* color: #000000; */
 }

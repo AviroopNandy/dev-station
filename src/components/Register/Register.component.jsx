@@ -12,6 +12,7 @@ const Register = () => {
     const [confirm, setConfirm] = useState("");
     const [gender, setGender] = useState("");
     const [mobile, setMobile] = useState();
+    const [role, setRole] = useState("Frontend");
     const [email, setEmail] = useState("");
 
     const history = useHistory();
@@ -26,7 +27,8 @@ const Register = () => {
                 email: email,
                 password: password,
                 gender: gender,
-                phone: mobile
+                phone: mobile,
+                role: role
             };
             console.log("User data: ", data);
             const headerConfig = {
@@ -41,11 +43,11 @@ const Register = () => {
                 ...headerConfig
             })
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 alert("Successfully registered!")
             })
             .catch(error => {
-                console.log(error);
+                alert(error);
             });
             history.push("/login");
         } else {
@@ -85,6 +87,15 @@ const Register = () => {
                     <div className="register__form-group">
                         <label htmlFor="mobile">Mobile Number</label>
                         <input type="number" name="mobile" id="mobile" onChange={(e) => setMobile(e.target.value)} required />
+                    </div>
+                    <div className="register__form-group">
+                        <label htmlFor="role">Role</label>
+                        <select value={role} onChange={(e) => setRole(e.target.value)}>
+                            <option value="Frontend">Frontend</option>
+                            <option value="Backend">Backend</option>
+                            <option value="App">App</option>
+                            <option value="AI/ML">AI/ML</option>
+                        </select>
                     </div>
                     <div className="register__form-group">
                         <label htmlFor="email">E-mail</label>

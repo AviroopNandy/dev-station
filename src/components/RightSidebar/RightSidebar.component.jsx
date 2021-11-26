@@ -36,7 +36,7 @@ const RightSidebar = () => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get("https://devdevss.herokuapp.com/user/active", {
+        axios.get("https://devdevss.herokuapp.com/user/users/active", {
             ...headerConfig
         })
         .then(res => {

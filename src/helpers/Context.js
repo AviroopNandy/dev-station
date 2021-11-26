@@ -24,6 +24,7 @@ const DevStationProvider = ({ children }) => {
     // }]);
 
     const [allRequests, setAllRequests] = useState([]);
+    const [userFeedRequests, setUserFeedRequests] = useState([]);
 
     const getAllPosts = () => {
         const headerConfig = {
@@ -117,7 +118,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get("http://localhost:8000/user/users/top3", {
+        axios.get("https://devdevss.herokuapp.com/user/users/top3", {
             ...headerConfig
         })
         .then(res => {
@@ -136,7 +137,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get(`http://localhost:8000/request/created/${userId}`, {
+        axios.get(`https://devdevss.herokuapp.com/request/created/${userId}`, {
             ...headerConfig
         })
         .then(res => {
@@ -150,7 +151,34 @@ const DevStationProvider = ({ children }) => {
                     }]);
                 });
             }
-            console.log(allRequests.length);
+            // console.log(allRequests.length);
+        })
+    }
+
+    const getUserFeedRequests = () => {
+        setUserFeedRequests([]);
+        const headerConfig = {
+            headers: {
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        };
+        axios.get(`https://devdevss.herokuapp.com/user/${user}/feed/request`, {
+            ...headerConfig
+        })
+        .then(res => {
+            if(res.status === 200) {
+                res.data.forEach(request => {
+                    setUserFeedRequests(userFeedRequests => [...userFeedRequests, {
+                        id: request._id,
+                        creator: request.user_to_request,
+                        acceptedBy: request.user_to_accept,
+                        type: request.type,
+                        body: request.body,
+                        accepted: request.accepted
+                    }]);
+                });
+            }
         })
     }
 
@@ -162,12 +190,14 @@ const DevStationProvider = ({ children }) => {
                 userFeed,
                 userAbout,
                 allRequests,
+                userFeedRequests,
                 getAllPosts: getAllPosts,
                 getAllUserPosts: getAllUserPosts,
                 getUserFeed: getUserFeed,
                 getUserAbout: getUserAbout,
                 getTop3Users: getTop3Users,
-                getAllRequests: getAllRequests
+                getAllRequests: getAllRequests,
+                getUserFeedRequests: getUserFeedRequests
             }}
         >
             { children }

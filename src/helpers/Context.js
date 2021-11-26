@@ -169,14 +169,21 @@ const DevStationProvider = ({ children }) => {
         .then(res => {
             if(res.status === 200) {
                 res.data.forEach(request => {
-                    setUserFeedRequests(userFeedRequests => [...userFeedRequests, {
-                        id: request._id,
-                        creator: request.user_to_request,
-                        acceptedBy: request.user_to_accept,
-                        type: request.type,
-                        body: request.body,
-                        accepted: request.accepted
-                    }]);
+                    axios.get(`https://devdevss.herokuapp.com/user/${request.user_to_request}`, {
+                        ...headerConfig
+                    })
+                    .then(res => {
+                        setUserFeedRequests(userFeedRequests => [...userFeedRequests, {
+                            id: request._id,
+                            firstName: res.data.first_name,
+                            lastName: res.data.last_name,
+                            creator: res.data.username,
+                            acceptedBy: request.user_to_accept,
+                            type: request.type,
+                            body: request.body,
+                            accepted: request.accepted
+                        }]);
+                    })
                 });
             }
         })

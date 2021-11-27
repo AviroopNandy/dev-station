@@ -15,6 +15,7 @@ const About = ({ viewUserMode, username }) => {
         if(!viewUsername) {
             getUserAbout(user);
         }
+        
     }, []);
     return (
         <DevStationConsumer>

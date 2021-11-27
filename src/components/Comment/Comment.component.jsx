@@ -34,7 +34,7 @@ const Comment = ({ id }) => {
             }
         };
         cids.forEach(cid => {
-            axios.get(`https://devdevss.herokuapp.com/post/${cid}/comment/metadata`, {
+            axios.get(`http://0.0.0.0:8000/post/${cid}/comment/metadata`, {
                 ...headerConfig
             })
             .then(res => {
@@ -57,7 +57,7 @@ const Comment = ({ id }) => {
             username: user,
             post_id: id
         };
-        axios.post(`https://devdevss.herokuapp.com/post/${id}/comment`, {
+        axios.post(`http://0.0.0.0:8000/post/${id}/comment`, {
             ...body
         }, {
             ...headerConfig

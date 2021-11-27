@@ -59,7 +59,7 @@ const DevStationProvider = ({ children }) => {
             ...headerConfig
         })
         .then(res => {
-            setViewUserMode(true);
+            setViewUserMode(false);
             setAllUserPosts(res.data);
         })
         .catch(error => {

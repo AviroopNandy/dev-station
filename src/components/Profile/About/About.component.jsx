@@ -29,7 +29,11 @@ const About = ({ viewUserMode, username }) => {
                             <div className="about__details">
                                 <div className="about__info">
                                     <span className="about__name">{ userAbout.firstName } { userAbout.lastName }</span><br />
-                                    <span className="about__username">@{username}</span>
+                                    {viewUserMode ? 
+                                        (<span className="about__username">@{username}</span>)
+                                        :
+                                        (<span className="about__username">@{user}</span>)
+                                    }
                                 </div>
                                 { viewUserMode ? (
                                     null

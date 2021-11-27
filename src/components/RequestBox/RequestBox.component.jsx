@@ -22,7 +22,7 @@ const RequestBox = () => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.post("https://devdevss.herokuapp.com/request/create", {
+        axios.post("http://0.0.0.0:8000/request/create", {
             ...post
         }, {
             ...headerConfig

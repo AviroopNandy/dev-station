@@ -36,7 +36,7 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser, likesCoun
             }
         };
 
-        axios.get(`https://devdevss.herokuapp.com/user/${user}/details`, {
+        axios.get(`http://0.0.0.0:8000/user/${user}/details`, {
             ...headerConfig
         })
         .then(res => {
@@ -46,7 +46,7 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser, likesCoun
             alert(error);
         });
 
-        axios.get(`https://devdevss.herokuapp.com/user/${username}/details`, {
+        axios.get(`http://0.0.0.0:8000/user/${username}/details`, {
             ...headerConfig
         })
         .then(res => {
@@ -56,7 +56,7 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser, likesCoun
             alert(error);
         });
         
-        axios.get(`https://devdevss.herokuapp.com/post/${id}`, {
+        axios.get(`http://0.0.0.0:8000/post/${id}`, {
             ...headerConfig
         })
         .then(async res => {
@@ -74,7 +74,7 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser, likesCoun
                 "Access-Control-Allow-Credentials": "true"
             }
         };
-        axios.post(`https://devdevss.herokuapp.com/post/${id}/like`, {
+        axios.post(`http://0.0.0.0:8000/post/${id}/like`, {
             ...headerConfig
         })
         .then(res => {
@@ -101,7 +101,7 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser, likesCoun
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.post(`https://devdevss.herokuapp.com/user/${user}/follow/${username}`, {
+        axios.post(`http://0.0.0.0:8000/user/${user}/follow/${username}`, {
             ...headerConfig
         })
         .then(res => {
@@ -119,7 +119,7 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser, likesCoun
                 "Access-Control-Allow-Credentials": "true"
             }
         };
-        axios.post(`https://devdevss.herokuapp.com/user/${user}/unfollow/${username}`, {
+        axios.post(`http://0.0.0.0:8000/user/${user}/unfollow/${username}`, {
             ...headerConfig
         })
         .then(res => {
@@ -139,7 +139,7 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser, likesCoun
                     "Access-Control-Allow-Credentials": "true"
                 }
             };
-            axios.delete(`https://devdevss.herokuapp.com/post/${id}`, {
+            axios.delete(`http://0.0.0.0:8000/post/${id}`, {
                 ...headerConfig
             })
             .then(res => {

@@ -40,7 +40,7 @@ const RightSidebar = () => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get(`https://devdevss.herokuapp.com/user/${user}/details`, {
+        axios.get(`http://0.0.0.0:8000/user/${user}/details`, {
             ...headerConfig
         })
         .then(res => {
@@ -50,7 +50,7 @@ const RightSidebar = () => {
             alert(error);
         });
 
-        axios.get("https://devdevss.herokuapp.com/user/users/active", {
+        axios.get("http://0.0.0.0:8000/user/users/active", {
             ...headerConfig
         })
         .then(res => {
@@ -70,7 +70,7 @@ const RightSidebar = () => {
             alert(error);
         });
 
-        axios.get("https://devdevss.herokuapp.com/user/users/top3", {
+        axios.get("http://0.0.0.0:8000/user/users/top3", {
             ...headerConfig
         })
         .then(res => {
@@ -103,7 +103,7 @@ const RightSidebar = () => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.post(`https://devdevss.herokuapp.com/user/${user}/follow/${username}`, {
+        axios.post(`http://0.0.0.0:8000/user/${user}/follow/${username}`, {
             ...headerConfig
         })
         .then(res => {
@@ -122,7 +122,7 @@ const RightSidebar = () => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.post(`https://devdevss.herokuapp.com/user/${user}/unfollow/${username}`, {
+        axios.post(`http://0.0.0.0:8000/user/${user}/unfollow/${username}`, {
             ...headerConfig
         })
         .then(res => {

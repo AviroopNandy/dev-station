@@ -22,7 +22,7 @@ const Login = () => {
                 "Content-Type": "Application/json"
             }
         };
-        axios.post("https://devdevss.herokuapp.com/user/login", {
+        axios.post("http://0.0.0.0:8000/user/login", {
             ...data
         }, {
             ...headerConfig

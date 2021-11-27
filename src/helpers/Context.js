@@ -9,6 +9,8 @@ const DevStationProvider = ({ children }) => {
     const [allPosts, setAllPosts] = useState(null);
     const [allUserPosts, setAllUserPosts] = useState(null);
     const [userFeed, setUserFeed] = useState(null);
+    const [viewUserMode, setViewUserMode] = useState(false);
+    const [viewUsername, setViewUsername] = useState("");
     const [userAbout, setUserAbout] = useState({
         firstName: "",
         lastName: "",
@@ -47,8 +49,6 @@ const DevStationProvider = ({ children }) => {
     }
 
     const getAllUserPosts = () => {
-        setUser(sessionStorage.getItem("user"));
-        console.log("Logged In User: ", user);
         const headerConfig = {
             headers: {
                 "Content-Type": "Application/json",
@@ -59,10 +59,8 @@ const DevStationProvider = ({ children }) => {
             ...headerConfig
         })
         .then(res => {
-            console.log(res.data);
-            // setAllUserPosts(res);
+            setViewUserMode(true);
             setAllUserPosts(res.data);
-            console.log(allUserPosts);
         })
         .catch(error => {
             console.log(error);
@@ -90,6 +88,14 @@ const DevStationProvider = ({ children }) => {
     }
 
     const getUserAbout = (username) => {
+        setUserAbout({
+            firstName: "",
+            lastName: "",
+            role: "",
+            posts: 0,
+            followers: 0,
+            following: 0
+        });
         const headerConfig = {
             headers: {
                 "Content-Type": "Application/json",
@@ -99,8 +105,9 @@ const DevStationProvider = ({ children }) => {
         axios.get(`https://devdevss.herokuapp.com/user/${username}/details`, {
             ...headerConfig
         })
-        .then(async res => {
-            await setUserAbout({
+        .then(res => {
+            console.log("User Details: ",res.data);
+            setUserAbout({
                 firstName: res.data.first_name,
                 lastName: res.data.last_name,
                 role: res.data.role,
@@ -191,6 +198,31 @@ const DevStationProvider = ({ children }) => {
         })
     }
 
+    const getAllViewUserPosts = (username) => {
+        const headerConfig = {
+            headers: {
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        };
+        axios.get(`https://devdevss.herokuapp.com/post/user/${username}`, {
+            ...headerConfig
+        })
+        .then(res => {
+            setViewUsername(username);
+            getUserAbout(username);
+            setAllUserPosts(res.data);
+            setViewUserMode(true);
+        })
+        .catch(error => {
+            alert(error);
+        })
+    }
+
+    const changeViewUserMode = (bool) => {
+        setViewUserMode(bool);
+    }
+
     return(
         <DevStationContext.Provider
             value={{
@@ -200,13 +232,17 @@ const DevStationProvider = ({ children }) => {
                 userAbout,
                 allRequests,
                 userFeedRequests,
+                viewUserMode,
+                viewUsername,
                 getAllPosts: getAllPosts,
                 getAllUserPosts: getAllUserPosts,
                 getUserFeed: getUserFeed,
                 getUserAbout: getUserAbout,
                 getTop3Users: getTop3Users,
                 getAllRequests: getAllRequests,
-                getUserFeedRequests: getUserFeedRequests
+                getUserFeedRequests: getUserFeedRequests,
+                getAllViewUserPosts: getAllViewUserPosts,
+                changeViewUserMode: changeViewUserMode
             }}
         >
             { children }

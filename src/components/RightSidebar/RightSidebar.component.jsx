@@ -5,12 +5,14 @@ import { Button, CircularProgress } from "@material-ui/core";
 import { DevStationConsumer, DevStationContext } from "../../helpers/Context";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import Profile from "../Profile/Profile.component";
+import RemoveIcon from "@material-ui/icons/RemoveCircleOutlineOutlined";
 
 import "./RightSidebar.style.css";
 
 const RightSidebar = () => {
     const [user, setUser] = useState(sessionStorage.getItem("user"));
     const [activeUsers, setActiveUsers] = useState([{
+        id: "",
         firstName: "",
         lastName: "",
         username: "",
@@ -19,6 +21,7 @@ const RightSidebar = () => {
         posts: 0
     }]);
     const [top3Users, setTop3Users] = useState([{
+        id: "",
         firstName: "",
         lastName: "",
         username: "",
@@ -26,6 +29,7 @@ const RightSidebar = () => {
         following: 0,
         posts: 0
     }]);
+    const [followingIds, setFollowingIds] = useState([]);
 
     useEffect(() => {
         setTop3Users([]);
@@ -36,12 +40,23 @@ const RightSidebar = () => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
+        axios.get(`https://devdevss.herokuapp.com/user/${user}/details`, {
+            ...headerConfig
+        })
+        .then(res => {
+            setFollowingIds([...res.data.following]);
+        })
+        .catch(error => {
+            alert(error);
+        });
+
         axios.get("https://devdevss.herokuapp.com/user/users/active", {
             ...headerConfig
         })
         .then(res => {
             res.data.forEach(user => {
                 setActiveUsers(activeUsers => [...activeUsers, {
+                    id: user._id,
                     firstName: user.first_name,
                     lastName: user.last_name,
                     username: user.username,
@@ -54,12 +69,14 @@ const RightSidebar = () => {
         .catch(error => {
             alert(error);
         });
+
         axios.get("https://devdevss.herokuapp.com/user/users/top3", {
             ...headerConfig
         })
         .then(res => {
             res.data.forEach(user => {
                 setTop3Users(top3Users => [...top3Users, {
+                    id: user._id,
                     firstName: user.first_name,
                     lastName: user.last_name,
                     username: user.username,
@@ -98,6 +115,25 @@ const RightSidebar = () => {
         })
     }
 
+    const unfollowUserHandler = (username) => {
+        const headerConfig = {
+            headers: {
+                "Content-Type": "Application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        };
+        axios.post(`https://devdevss.herokuapp.com/user/${user}/unfollow/${username}`, {
+            ...headerConfig
+        })
+        .then(res => {
+            alert("User unfollowed successfully!");
+            window.location.reload();
+        })
+        .catch(error => {
+            alert(error);
+        })
+    }
+
     return (
         <DevStationConsumer>
             {value => {
@@ -109,13 +145,15 @@ const RightSidebar = () => {
                             <br />
                             { activeUsers.length > 0 ? (
                                 <>
-                                    { activeUsers.map(({firstName, lastName, username, followers, following, posts}) => (
-                                        <div key={username}>
+                                    { activeUsers.map(({id, firstName, lastName, username, followers, following, posts}) => (
+                                        <div key={id}>
                                             <div className="rightSidebar__user">
                                                 <div className="rightSidebar__follow">
                                                     <p onClick={() => showUserProfile(username)}>{firstName} {lastName} @{username}</p>
                                                     { user === username ? (
                                                         null
+                                                    ) : followingIds.includes(id) ? (
+                                                        <RemoveIcon fontSize="medium" className="rightSidebar__followBtn" titleAccess={`Unfollow ${username}`} onClick={() => unfollowUserHandler(username)} />
                                                     ) : (
                                                         <PersonAddIcon fontSize="medium" className="rightSidebar__followBtn" titleAccess={`Follow ${username}`} onClick={() => followUserHandler(username)} />
                                                     ) }
@@ -138,13 +176,15 @@ const RightSidebar = () => {
                             <br />
                             { top3Users.length > 0 ? (
                                 <>
-                                    { top3Users.map(({firstName, lastName, username, followers, following, posts}) => (
+                                    { top3Users.map(({id, firstName, lastName, username, followers, following, posts}) => (
                                         <div key={username}>
                                             <div className="rightSidebar__user">
                                                 <div className="rightSidebar__follow">
                                                     <p>{firstName} {lastName} @{username}</p>
                                                     { user === username ? (
                                                         null
+                                                    ) : followingIds.includes(id) ? (
+                                                        <RemoveIcon fontSize="medium" className="rightSidebar__followBtn" titleAccess={`Unfollow ${username}`} onClick={() => unfollowUserHandler(username)} />
                                                     ) : (
                                                         <PersonAddIcon fontSize="medium" className="rightSidebar__followBtn" titleAccess={`Follow ${username}`} onClick={() => followUserHandler(username)} />
                                                     ) }

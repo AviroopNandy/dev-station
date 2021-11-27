@@ -8,18 +8,20 @@ import "./Profile.style.css";
 
 const Profile = () => {
     const [user, setUser] = useState(sessionStorage.getItem("user"));
-    const { getAllUserPosts } = useContext(DevStationContext);
+    const { getAllUserPosts, viewUserMode, changeViewUserMode } = useContext(DevStationContext);
 
     useEffect(() => {
-        setUser(sessionStorage.getItem("user"));
-        getAllUserPosts();
+        // changeViewUserMode(false);
+        if(!viewUserMode) {
+            getAllUserPosts();
+        }
     }, []);
 
     return (
         <DevStationConsumer>
             {value => {
-                const { allUserPosts } = value;
-                console.log("All User Posts: ", allUserPosts);
+                const { allUserPosts, viewUserMode, viewUsername } = value;
+                console.log(viewUsername);
                 return (
                     <div className="profile">
                         <div className="profile__header">
@@ -30,7 +32,11 @@ const Profile = () => {
                                 null
                             ) }
                         </div>
-                        <About />
+                        { viewUserMode ? (
+                            <About viewUserMode={viewUserMode} username={viewUsername} />
+                        ) : (
+                            <About viewUserMode={viewUserMode} username={user} />
+                        ) }
                         { allUserPosts ? (
                             // {allUserPosts.length > 0 ? (
                             <div>

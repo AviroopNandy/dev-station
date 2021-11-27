@@ -6,13 +6,15 @@ import EditProfile from "../../EditProfile/EditProfile.component";
 
 import "./About.style.css";
 
-const About = () => {
+const About = ({ viewUserMode, username }) => {
     const [user, setUser] = useState(sessionStorage.getItem("user"));
     const [showEdit, setShowEdit] = useState(false);
-    const { getUserAbout } = useContext(DevStationContext);
+    const { getUserAbout, viewUsername } = useContext(DevStationContext);
 
     useEffect(() => {
-        getUserAbout(user);
+        if(!viewUsername) {
+            getUserAbout(user);
+        }
     }, []);
     return (
         <DevStationConsumer>
@@ -27,21 +29,25 @@ const About = () => {
                             <div className="about__details">
                                 <div className="about__info">
                                     <span className="about__name">{ userAbout.firstName } { userAbout.lastName }</span><br />
-                                    <span className="about__username">@{user}</span>
+                                    <span className="about__username">@{username}</span>
                                 </div>
-                                <div className="about__edit">
-                                    <Button variant="contained" onClick={() => setShowEdit(!showEdit)}>Edit Profile</Button>
-                                    { showEdit ? (
-                                        <Modal
-                                        open={showEdit}
-                                        onClose={() => setShowEdit(false)}
-                                        >
-                                            <EditProfile />
-                                        </Modal>
-                                    ) : (
-                                        null
-                                    )}
-                                </div>
+                                { viewUserMode ? (
+                                    null
+                                ) : (
+                                    <div className="about__edit">
+                                        <Button variant="contained" onClick={() => setShowEdit(!showEdit)}>Edit Profile</Button>
+                                        { showEdit ? (
+                                            <Modal
+                                            open={showEdit}
+                                            onClose={() => setShowEdit(false)}
+                                            >
+                                                <EditProfile />
+                                            </Modal>
+                                        ) : (
+                                            null
+                                        )}
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className="about__stats">

@@ -27,7 +27,7 @@ const Requests = () => {
         const body = {
             user_to_accept: userId
         };
-        axios.put(`https://devdevss.herokuapp.com/request/${id}/accept`, {
+        axios.put(`http://0.0.0.0:8000/request/${id}/accept`, {
             ...body
         }, {
             ...headerConfig

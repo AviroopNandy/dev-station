@@ -63,7 +63,7 @@ const EditProfile = () => {
                 "Access-Control-Allow-Origin": "*",
             }
         };
-        axios.put(`http://0.0.0.0:8000/user/update/${userId}`, {
+        axios.put(`https://devdevss.herokuapp.com/user/update/${userId}`, {
             ...body
         }, {
             ...headerConfig
@@ -85,7 +85,7 @@ const EditProfile = () => {
                 "Content-Type": "Application/json"
             }
         };
-        axios.delete(`http://0.0.0.0:8000/user/${userId}/delete`, {
+        axios.delete(`https://devdevss.herokuapp.com/user/${userId}/delete`, {
             ...headerConfig
         })
         .then(res => {

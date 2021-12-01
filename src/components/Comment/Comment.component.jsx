@@ -19,7 +19,7 @@ const Comment = ({ id }) => {
                 "Content-Type": "Application/json"
             }
         };
-        axios.get(`http://localhost:8000/post/${id}/comments`, {
+        axios.get(`https://devdevss.herokuapp.com/post/${id}/comments`, {
             ...headerConfig
         })
         .then(res => {
@@ -34,7 +34,7 @@ const Comment = ({ id }) => {
             }
         };
         cids.forEach(cid => {
-            axios.get(`http://0.0.0.0:8000/post/${cid}/comment/metadata`, {
+            axios.get(`https://devdevss.herokuapp.com/post/${cid}/comment/metadata`, {
                 ...headerConfig
             })
             .then(res => {
@@ -57,7 +57,7 @@ const Comment = ({ id }) => {
             username: user,
             post_id: id
         };
-        axios.post(`http://0.0.0.0:8000/post/${id}/comment`, {
+        axios.post(`https://devdevss.herokuapp.com/post/${id}/comment`, {
             ...body
         }, {
             ...headerConfig

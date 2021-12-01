@@ -62,7 +62,7 @@ const LeftSidebar = ({ home, explore, profile, requests }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.post(`http://0.0.0.0:8000/user/logout?username=${user}`, {
+        axios.post(`https://devdevss.herokuapp.com/user/logout?username=${user}`, {
             ...headerConfig
         })
         .then(res => {

@@ -19,7 +19,7 @@ const Comment = ({ id }) => {
                 "Content-Type": "Application/json"
             }
         };
-        axios.get(`http://0.0.0.0:8000/post/${id}/comments`, {
+        axios.get(`http://localhost:8000/post/${id}/comments`, {
             ...headerConfig
         })
         .then(res => {

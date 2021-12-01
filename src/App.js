@@ -28,7 +28,7 @@ function App() {
                     "Content-Type": "Application/json",
                 }
             };
-            axios.get(`http://0.0.0.0:8000/user/${user}/details`, {
+            axios.get(`https://devdevss.herokuapp.com/user/${user}/details`, {
                 ...headerConfig
             })
             .then(res => {

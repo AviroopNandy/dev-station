@@ -36,7 +36,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get("http://0.0.0.0:8000/post", {
+        axios.get("https://devdevss.herokuapp.com/post", {
             ...headerConfig
         })
         .then(res => {
@@ -55,11 +55,11 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get(`http://0.0.0.0:8000/post/user/${user}`, {
+        axios.get(`https://devdevss.herokuapp.com/post/user/${user}`, {
             ...headerConfig
         })
         .then(res => {
-            setViewUserMode(true);
+            setViewUserMode(false);
             setAllUserPosts(res.data);
         })
         .catch(error => {
@@ -75,7 +75,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get(`http://0.0.0.0:8000/user/${user}/feed`, {
+        axios.get(`https://devdevss.herokuapp.com/user/${user}/feed`, {
             ...headerConfig
         })
         .then(res => {
@@ -102,7 +102,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get(`http://0.0.0.0:8000/user/${username}/details`, {
+        axios.get(`https://devdevss.herokuapp.com/user/${username}/details`, {
             ...headerConfig
         })
         .then(res => {
@@ -127,7 +127,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get("http://0.0.0.0:8000/user/users/top3", {
+        axios.get("https://devdevss.herokuapp.com/user/users/top3", {
             ...headerConfig
         })
         .then(res => {
@@ -146,7 +146,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get(`http://0.0.0.0:8000/request/created/${userId}`, {
+        axios.get(`https://devdevss.herokuapp.com/request/created/${userId}`, {
             ...headerConfig
         })
         .then(res => {
@@ -172,13 +172,13 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get(`http://0.0.0.0:8000/user/${user}/feed/request`, {
+        axios.get(`https://devdevss.herokuapp.com/user/${user}/feed/request`, {
             ...headerConfig
         })
         .then(res => {
             if(res.status === 200) {
                 res.data.forEach(request => {
-                    axios.get(`http://0.0.0.0:8000/user/${request.user_to_request}`, {
+                    axios.get(`https://devdevss.herokuapp.com/user/${request.user_to_request}`, {
                         ...headerConfig
                     })
                     .then(res => {
@@ -205,7 +205,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get(`http://0.0.0.0:8000/post/user/${username}`, {
+        axios.get(`https://devdevss.herokuapp.com/post/user/${username}`, {
             ...headerConfig
         })
         .then(res => {

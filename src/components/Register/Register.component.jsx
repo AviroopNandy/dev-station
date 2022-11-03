@@ -35,7 +35,7 @@ const Register = () => {
                     "Access-Control-Allow-Origin": "*"
                 }
             };
-            axios.post("https://devdevss.herokuapp.com/user/signup", {
+            axios.post("https://devstation.up.railway.app/user/signup", {
                 ...data
             }, {
                 ...headerConfig

@@ -16,7 +16,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get("https://devdevss.herokuapp.com/post", {
+        axios.get("https://devstation.up.railway.app/post", {
             ...headerConfig
         })
         .then(res => {
@@ -35,7 +35,7 @@ const DevStationProvider = ({ children }) => {
                 "Access-Control-Allow-Origin": "*"
             }
         };
-        axios.get(`https://devdevss.herokuapp.com/post/${user}`, {
+        axios.get(`https://devstation.up.railway.app/post/${user}`, {
             ...headerConfig
         })
         .then(res => {
@@ -54,7 +54,7 @@ const DevStationProvider = ({ children }) => {
                 "Content-Type": "Application/json"
             }
         };
-        axios.get(`https://devdevss.herokuapp.com/user/${user}/feed`, {
+        axios.get(`https://devstation.up.railway.app/user/${user}/feed`, {
             ...headerConfig
         })
         .then(res => {

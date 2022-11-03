@@ -24,7 +24,7 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
                 "Access-Control-Allow-Credentials": "true"
             }
         };
-        axios.post(`https://devdevss.herokuapp.com/user/${user}/follow/${username}`, {
+        axios.post(`https://devstation.up.railway.app/user/${user}/follow/${username}`, {
             ...headerConfig
         })
         .then(res => {
@@ -46,7 +46,7 @@ const Post = ({ id, username, body, timeAdded, deletePost, followUser }) => {
                 }
             };
     
-            await axios.delete(`https://devdevss.herokuapp.com/post/${id}`, {
+            await axios.delete(`https://devstation.up.railway.app/post/${id}`, {
                 ...headerConfig
             })
             console.log("Post Deleted!");
